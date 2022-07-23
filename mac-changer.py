@@ -35,15 +35,14 @@ def get_interface_mac(interface):
 options = parse_input()
 
 current_mac = get_interface_mac(options.interface)
-# if not current_mac:
-#     print("[-] This interface does not have a MAC address")
+
 if current_mac == options.new_mac:
     print("[-] This MAC is already assigned to this interface.")    
 else:
-    print("[+] The current MAC address is: " + str(current_mac))
+    print("[!] This interface currently does not have a MAC address." if not current_mac else "[!] The current MAC address for this interface is: " + str(current_mac))
     change_mac(options.interface, options.new_mac)
     current_mac = get_interface_mac(options.interface)
     if current_mac == options.new_mac:
-        print("[+] The MAC address for the interface " + options.interface + " changed sucessfully to " + options.new_mac)
+        print("[+] The MAC address for this interface changed sucessfully!")
     else:
         print("[-] The MAC changing faild => try to run the script as an administrator using `sudo` prefix before running python commang")
