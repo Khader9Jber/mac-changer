@@ -35,12 +35,12 @@ def get_interface_mac(interface):
 options = parse_input()
 
 current_mac = get_interface_mac(options.interface)
-if not current_mac:
-    print("[-] This interface does not have a MAC address")
-elif current_mac == options.new_mac:
+# if not current_mac:
+#     print("[-] This interface does not have a MAC address")
+if current_mac == options.new_mac:
     print("[-] This MAC is already assigned to this interface.")    
 else:
-    print("[+] The current MAC address is: " + current_mac)
+    print("[+] The current MAC address is: " + str(current_mac))
     change_mac(options.interface, options.new_mac)
     current_mac = get_interface_mac(options.interface)
     if current_mac == options.new_mac:
